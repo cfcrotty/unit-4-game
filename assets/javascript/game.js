@@ -48,11 +48,9 @@ $(document).ready(function () {
         }
 
         if (score > randomNum) {
-            alert(score + " > " + randomNum);
             losses++;
             startNewGame();
         } else if (score == randomNum) {
-            alert(score + " == " + randomNum);
             wins++;
             startNewGame();
         }
