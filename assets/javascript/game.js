@@ -10,6 +10,14 @@ var score = 0;
 
 //after the document is ready, load these
 $(document).ready(function () {
+    //function to load different sound clips on different scenarios
+    function loadSong(flag) {
+        var audioToPlay = "assets/audio/Star.mp3";
+        if (flag==0) audioToPlay = "assets/audio/SadTrombone.mp3";
+        else if (flag==1) audioToPlay = "assets/audio/Applause.mp3";
+        audio = new Audio(audioToPlay);
+        audio.play();
+    }
     //function to get random number between 2 number(inclusive)
     function getRandomInt(min, max) {
         min = Math.ceil(min);
@@ -37,6 +45,7 @@ $(document).ready(function () {
     startNewGame();
     //on click of jewels, run codes inside the function
     $('#jewel1, #jewel2, #jewel3, #jewel4').click(function () {
+        loadSong();
         if (this.id == 'jewel1') {
             score += jewel1;
         } else if (this.id == 'jewel2') {
@@ -48,9 +57,13 @@ $(document).ready(function () {
         }
 
         if (score > randomNum) {
+            audio.pause();
+            loadSong(0);
             losses++;
             startNewGame();
         } else if (score == randomNum) {
+            audio.pause();
+            loadSong(1);
             wins++;
             startNewGame();
         }
